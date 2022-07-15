@@ -4,12 +4,11 @@ import { BoardContext } from "../contexts/board.context";
 import { GameContext } from "../contexts/game.context";
 
 function Letter({ attemptVal, letterPos }) {
-  const { correctWord, currentAttempt } = useContext(GameContext);
+  const { correctWord, currentAttempt, setDisabledLetters } =
+    useContext(GameContext);
 
   const { board } = useContext(BoardContext);
   const letter = board[attemptVal][letterPos];
-
-  // checkCorrect?, almost? or error?
 
   const isCorrect = correctWord[letterPos] === letter;
 
@@ -26,7 +25,7 @@ function Letter({ attemptVal, letterPos }) {
 
   useEffect(() => {
     if (letter !== "" && !isCorrect && !isAlmost) {
-      // setDisabledLetters((prev) => [...prev, letter]);
+      setDisabledLetters((prev) => [...prev, letter]);
     }
   }, [currentAttempt]);
 

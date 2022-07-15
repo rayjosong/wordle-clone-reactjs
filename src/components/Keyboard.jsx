@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useCallback } from "react";
+import { GameContext } from "../contexts/game.context";
 import { KeyboardContext } from "../contexts/keyboard.context";
 import Key from "./Key";
 
@@ -9,6 +10,8 @@ function Keyboard() {
   const combinedKeys = [...keys1, ...keys2, ...keys3];
 
   const { onEnterKey, onSelectKey, onDeleteKey } = useContext(KeyboardContext);
+
+  const { disabledLetters } = useContext(GameContext);
 
   const handleKeyboard = useCallback((event) => {
     if (event.key === "Enter") {
@@ -36,18 +39,36 @@ function Keyboard() {
     <div className="keyboard" onKeyDown={handleKeyboard}>
       <div className="line1">
         {keys1.map((key) => {
-          return <Key key={key} keyVal={key} />;
+          return (
+            <Key
+              key={key}
+              keyVal={key}
+              disabled={disabledLetters.includes(key)}
+            />
+          );
         })}
       </div>
       <div className="line2">
         {keys2.map((key) => {
-          return <Key key={key} keyVal={key} />;
+          return (
+            <Key
+              key={key}
+              keyVal={key}
+              disabled={disabledLetters.includes(key)}
+            />
+          );
         })}
       </div>
       <div className="line3">
         <Key keyVal="ENTER" bigKey={true} />
         {keys3.map((key) => {
-          return <Key key={key} keyVal={key} />;
+          return (
+            <Key
+              key={key}
+              keyVal={key}
+              disabled={disabledLetters.includes(key)}
+            />
+          );
         })}
         <Key keyVal="DELETE" bigKey={true} />
       </div>
