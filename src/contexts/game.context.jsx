@@ -14,7 +14,11 @@ export const GameProvider = ({ children }) => {
   const [currentLetterPos, setCurrentLetterPos] = useState(0);
   const [correctWord, setCorrectWord] = useState("RIGHT");
   const [disabledLetters, setDisabledLetters] = useState([]);
-
+  const [currWord, setCurrWord] = useState("");
+  const [gameOver, setGameOver] = useState({
+    gameOver: false,
+    guessedWord: false,
+  });
   const value = {
     currentAttempt,
     currentLetterPos,
@@ -24,6 +28,10 @@ export const GameProvider = ({ children }) => {
     setCorrectWord,
     disabledLetters,
     setDisabledLetters,
+    currWord,
+    setCurrWord,
+    gameOver,
+    setGameOver,
   };
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;

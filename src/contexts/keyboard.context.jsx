@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { BoardContext } from "./board.context";
-import { GameContext } from "./game.context";
+import { GameContext, GameProvider } from "./game.context";
 
 export const KeyboardContext = createContext();
 
@@ -8,10 +8,15 @@ export const KeyboardProvider = ({ children }) => {
   const { board, setBoard } = useContext(BoardContext);
 
   const {
+    currWord,
+    setCurrWord,
     currentLetterPos,
     setCurrentLetterPos,
     currentAttempt,
     setCurrentAttempt,
+    correctWord,
+    gameOver,
+    setGameOver,
   } = useContext(GameContext);
 
   const onSelectKey = (keyVal) => {
@@ -42,6 +47,9 @@ export const KeyboardProvider = ({ children }) => {
 
     const newBoard = [...board];
     setBoard(newBoard);
+
+    const currentGuess = newBoard[currentAttempt].join("");
+    setCurrWord(currentGuess);
 
     // game logic
   };

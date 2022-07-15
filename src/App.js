@@ -5,11 +5,6 @@ import Keyboard from "./components/Keyboard";
 import Board from "./components/Board";
 
 function App() {
-  const [gameOver, setGameOver] = useState({
-    gameOver: false,
-    guessedWord: false,
-  });
-
   return (
     <div className="App">
       <nav>
