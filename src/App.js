@@ -1,4 +1,6 @@
+import { useEffect, useContext } from "react";
 import "./App.css";
+import Keyboard from "./components/Keyboard";
 
 import Board from "./components/Board";
 
@@ -8,7 +10,10 @@ function App() {
       <nav>
         <h1>Wordle</h1>
       </nav>
-    <Board />
+      <div className="game">
+        <Board />
+        <Keyboard />
+      </div>
     </div>
   );
 }
