@@ -6,15 +6,6 @@ import { KeyboardContext } from "../contexts/keyboard.context";
 function Key({ keyVal, bigKey }) {
   const { onEnterKey, onDeleteKey, onSelectKey } = useContext(KeyboardContext);
 
-  const {
-    currentAttempt,
-    setCurrentAttempt,
-    currentLetterPos,
-    setCurrentLetterPos,
-  } = useContext(GameContext);
-
-  const { board, setBoard } = useContext(BoardContext);
-
   const selectLetter = () => {
     if (keyVal === "ENTER") {
       onEnterKey();
