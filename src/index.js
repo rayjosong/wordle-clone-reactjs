@@ -5,13 +5,16 @@ import reportWebVitals from "./reportWebVitals";
 
 import BoardProvider from "./contexts/board.context";
 import { GameProvider } from "./contexts/game.context";
+import { KeyboardProvider } from "./contexts/keyboard.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
   <GameProvider>
     <BoardProvider>
-      <App />
+      <KeyboardProvider>
+        <App />
+      </KeyboardProvider>
     </BoardProvider>
   </GameProvider>
   // </React.StrictMode>
