@@ -19,6 +19,8 @@ export const GameProvider = ({ children }) => {
     gameOver: false,
     guessedWord: false,
   });
+
+  const [wordSet, setWordSet] = useState();
   const value = {
     currentAttempt,
     currentLetterPos,
@@ -32,6 +34,8 @@ export const GameProvider = ({ children }) => {
     setCurrWord,
     gameOver,
     setGameOver,
+    wordSet,
+    setWordSet,
   };
 
   return <GameContext.Provider value={value}>{children}</GameContext.Provider>;

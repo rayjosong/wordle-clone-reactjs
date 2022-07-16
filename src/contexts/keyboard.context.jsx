@@ -17,6 +17,7 @@ export const KeyboardProvider = ({ children }) => {
     correctWord,
     gameOver,
     setGameOver,
+    wordSet,
   } = useContext(GameContext);
 
   const onSelectKey = (keyVal) => {
@@ -45,14 +46,15 @@ export const KeyboardProvider = ({ children }) => {
     if (gameOver.gameOver) return;
     if (currentLetterPos !== 5) return;
 
-    setCurrentLetterPos(0);
-    setCurrentAttempt(currentAttempt + 1);
-
     const newBoard = [...board];
-    setBoard(newBoard);
-
     const currentGuess = newBoard[currentAttempt].join("");
-    setCurrWord(currentGuess);
+
+    if (wordSet.has(currentGuess.toLowerCase())) {
+      setCurrentLetterPos(0);
+      setCurrentAttempt(currentAttempt + 1);
+      setBoard(newBoard);
+      setCurrWord(currentGuess);
+    }
 
     // game logic
 
