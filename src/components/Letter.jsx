@@ -7,6 +7,8 @@ function Letter({ attemptVal, letterPos }) {
   const { correctWord, currentAttempt, setDisabledLetters } =
     useContext(GameContext);
 
+  console.log(correctWord);
+
   const { board } = useContext(BoardContext);
   const letter = board[attemptVal][letterPos];
   const isCorrect = correctWord[letterPos] === letter;

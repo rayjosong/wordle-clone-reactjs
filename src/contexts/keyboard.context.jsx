@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { BoardContext } from "./board.context";
-import { GameContext, GameProvider } from "./game.context";
+import { GameContext } from "./game.context";
 
 export const KeyboardContext = createContext();
 
@@ -20,6 +20,7 @@ export const KeyboardProvider = ({ children }) => {
   } = useContext(GameContext);
 
   const onSelectKey = (keyVal) => {
+    if (gameOver.gameOver) return;
     if (currentLetterPos > 4) return;
 
     const newBoard = [...board];
@@ -32,6 +33,7 @@ export const KeyboardProvider = ({ children }) => {
   };
 
   const onDeleteKey = () => {
+    if (gameOver.gameOver) return;
     if (currentLetterPos === 0) return;
     const newBoard = [...board];
     newBoard[currentAttempt][currentLetterPos - 1] = "";
@@ -40,6 +42,7 @@ export const KeyboardProvider = ({ children }) => {
   };
 
   const onEnterKey = () => {
+    if (gameOver.gameOver) return;
     if (currentLetterPos !== 5) return;
 
     setCurrentLetterPos(0);
@@ -52,6 +55,23 @@ export const KeyboardProvider = ({ children }) => {
     setCurrWord(currentGuess);
 
     // game logic
+
+    // max attempt reached? -> gameOver.gameOver = true
+    if (currentAttempt >= 4) {
+      console.log("current attempt > 4");
+      setGameOver({
+        gameOver: true,
+        guessedWord: false,
+      });
+    }
+
+    // check if guessedWord is true -> gameOver.guessedWord = true
+    if (currentGuess === correctWord) {
+      setGameOver({
+        gameOver: true,
+        guessedWord: true,
+      });
+    }
   };
 
   const value = { onSelectKey, onDeleteKey, onEnterKey };

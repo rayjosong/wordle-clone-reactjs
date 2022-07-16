@@ -7,10 +7,11 @@ import Board from "./components/Board";
 import generateWord from "./components/Word";
 
 import { GameContext } from "./contexts/game.context";
+import GameOver from "./components/GameOver";
 
 function App() {
-  const { correctWord, setCorrectWord } = useContext(GameContext);
-
+  const { correctWord, setCorrectWord, gameOver } = useContext(GameContext);
+  console.log(gameOver.gameOver);
   useEffect(() => {
     generateWord().then((word) => {
       setCorrectWord(word.word.toUpperCase());
@@ -24,7 +25,7 @@ function App() {
       </nav>
       <div className="game">
         <Board />
-        <Keyboard />
+        {gameOver.gameOver ? <GameOver /> : <Keyboard />}
       </div>
     </div>
   );
