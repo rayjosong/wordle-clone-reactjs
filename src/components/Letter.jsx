@@ -9,9 +9,7 @@ function Letter({ attemptVal, letterPos }) {
 
   const { board } = useContext(BoardContext);
   const letter = board[attemptVal][letterPos];
-
   const isCorrect = correctWord[letterPos] === letter;
-
   const isAlmost = !isCorrect && letter !== "" && correctWord.includes(letter);
 
   const hasSubmitted = currentAttempt > attemptVal;

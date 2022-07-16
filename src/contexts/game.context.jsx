@@ -12,7 +12,7 @@ export const GameContext = createContext({
 export const GameProvider = ({ children }) => {
   const [currentAttempt, setCurrentAttempt] = useState(0);
   const [currentLetterPos, setCurrentLetterPos] = useState(0);
-  const [correctWord, setCorrectWord] = useState("RIGHT");
+  const [correctWord, setCorrectWord] = useState("");
   const [disabledLetters, setDisabledLetters] = useState([]);
   const [currWord, setCurrWord] = useState("");
   const [gameOver, setGameOver] = useState({

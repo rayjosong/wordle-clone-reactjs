@@ -1,10 +1,22 @@
-import { useState, useContext } from "react";
+import { useEffect, useContext } from "react";
 import "./App.css";
-import Keyboard from "./components/Keyboard";
 
+import Keyboard from "./components/Keyboard";
 import Board from "./components/Board";
 
+import generateWord from "./components/Word";
+
+import { GameContext } from "./contexts/game.context";
+
 function App() {
+  const { correctWord, setCorrectWord } = useContext(GameContext);
+
+  useEffect(() => {
+    generateWord().then((word) => {
+      setCorrectWord(word.word.toUpperCase());
+    });
+  }, []);
+
   return (
     <div className="App">
       <nav>
