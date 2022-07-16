@@ -13,7 +13,6 @@ function App() {
   const { correctWord, setCorrectWord, gameOver, setWordSet } =
     useContext(GameContext);
 
-  console.log(correctWord);
   useEffect(() => {
     generateWord().then((word) => {
       setCorrectWord(word.word.toUpperCase());

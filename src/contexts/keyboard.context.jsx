@@ -60,7 +60,6 @@ export const KeyboardProvider = ({ children }) => {
 
     // max attempt reached? -> gameOver.gameOver = true
     if (currentAttempt >= 4) {
-      console.log("current attempt > 4");
       setGameOver({
         gameOver: true,
         guessedWord: false,
